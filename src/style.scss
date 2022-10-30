@@ -1,0 +1,22 @@
+
+$background: rgb(216, 215, 215);
+$form-color: #fff;
+
+body {
+  background-color: $background;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  h1{
+    font-size: 60px;
+    font-weight: 100;
+  }
+  .task-place{
+    min-height: 200px;
+    background-color: $form-color;
+    border-radius: 0.375rem;
+    border: 1px solid #ced4da
+  }
+
+}
