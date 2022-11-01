@@ -1,14 +1,28 @@
-import { Form } from "react-bootstrap";
+import { useContext, useRef } from "react"
+import { AppContext } from "../../App";
 
 export default function TaskInput(){
+  const {onAdd} = useContext(AppContext);
+  const ref = useRef<HTMLInputElement>(null)
+
+  const keyPressHandler = (event: React.KeyboardEvent) => {
+    if(ref.current){
+      if (event.key === 'Enter') {
+        if(ref.current.value){
+          onAdd(ref.current.value)
+          ref.current!.value = ''
+        }
+      }
+    }
+  }
   return(
-    <Form>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Please enter a task</Form.Label>
-        <Form.Control type="email" placeholder="What needs to be done?" />
-        <Form.Text className="text-muted">
-        </Form.Text>
-      </Form.Group>
-      </Form>
+    <input 
+    className="input" 
+    type="text" 
+    placeholder="What needs to be done?"
+    onKeyPress={keyPressHandler}
+    ref={ref}
+    id="title"
+    />
   )
 }
